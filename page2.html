@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ảnh chung</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
+
+        body {
+            font-family: "Sedgwick Ave", cursive;
+            font-size: 20px;
+            background-color: rgb(253, 251, 235);
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .text {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .polaroid {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            background-color: white;
+            border: 15px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            filter: blur(5px) brightness(0%) saturate(0%);
+            transition: filter 3s ease-in-out;
+        }
+
+        .photo.is-developed {
+            filter: blur(0) brightness(100%) saturate(100%);
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            background-color: transparent;
+            font-size: 30px;
+            cursor: pointer;
+            font-family: "Sedgwick Ave", cursive;
+            color: #000;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .polaroid {
+                max-width: 90%;
+            }
+
+            .text {
+                font-size: 18px;
+            }
+
+            .button {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body onclick="playAudio()">
+    <div class="container">
+        <div class="text">
+            <p>Nhấn vào máy ảnh để xem ảnh chung ❤️😘💗</p>
+            <button class="button js-develop-button">📸</button>
+            <a href="./index.html"><button class="button">↩️</button></a>
+        </div>
+        <div class="polaroid">
+            <img class="photo js-photo" src="https://i.postimg.cc/vZmy67Ck/Screenshot-20250316-222611-Gallery-2.jpg" alt="Ảnh chung">
+        </div>
+    </div>
+
+    <audio id="myAudio">
+        <source src="./ST.mp3" type="audio/mp3">
+        Trình duyệt của bạn không hỗ trợ thẻ audio.
+    </audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const developButton = document.querySelector(".js-develop-button");
+            const photo = document.querySelector(".js-photo");
+
+            developButton.addEventListener("click", function () {
+                photo.classList.add("is-developed");
+            });
+        });
+
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            if (audio.paused) {
+                audio.play();
+            }
+        }
+    </script>
+</body>
+</html>
